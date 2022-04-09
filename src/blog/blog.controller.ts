@@ -13,7 +13,7 @@ import { UpdateBlogDto } from './dto/update-blog.dto';
 import { BlogService } from './blog.service';
 import { Blog } from './interfaces/blog.interface';
 
-@Controller('blog')
+@Controller('blogs')
 export class BlogController {
   constructor(private blogService: BlogService) {}
 
