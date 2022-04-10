@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { Blog } from './interfaces/blog.interface';
-import { ListBlogsDto } from './dto/list-blogs.dto';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 
@@ -8,6 +7,7 @@ import { UpdateBlogDto } from './dto/update-blog.dto';
 export class BlogService {
   private readonly blogs: Blog[] = [];
   private id = 0;
+  private readonly spoilerLength = 100;
 
   findAll(): Blog[] {
     return this.blogs;
@@ -21,6 +21,7 @@ export class BlogService {
     const blog = new Blog();
     blog.id = this.id++;
     blog.title = createBlogDto.title;
+    blog.spoiler = createBlogDto.content.substring(0, this.spoilerLength);
     blog.content = createBlogDto.content;
     this.blogs.push(blog);
   }
@@ -28,6 +29,7 @@ export class BlogService {
   update(id: number, updateBlogDto: UpdateBlogDto) {
     const blogToUpdate = this.findById(id);
     blogToUpdate.title = updateBlogDto.newTitle;
+    blogToUpdate.spoiler = updateBlogDto.newContent.substring(0, this.spoilerLength);
     blogToUpdate.content = updateBlogDto.newContent;
   }
 
