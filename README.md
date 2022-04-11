@@ -5,11 +5,11 @@ A REST API for a blog.
 ## Installation
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Running the app
 
 ```bash
-$ npm run start
+npm run start
 ```
